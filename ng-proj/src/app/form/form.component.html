@@ -1,0 +1,65 @@
+<div class="backdrop" (click)="close.emit()">
+    
+</div>
+
+<form class="form" [formGroup]="form" (ngSubmit)="submit()" *ngIf="this.showRegiser;else showLog">
+
+    <div class="form-control">
+        <label>Ім'я</label>
+        <input type="text" formControlName='name'>
+        <div class="validation"></div>
+    </div>
+
+    <div class="form-control">
+        <label>Прізвище</label>
+        <input type="text" formControlName='surname'>
+        <div class="validation"></div>
+    </div>
+
+    <div class="form-control">
+        <label>e-mail</label>
+        <input type="text" formControlName='email'>
+        <div class="validation"></div>
+    </div>
+
+    <div class="form-control">
+        <label>Номер телефону</label>
+        <input type="text" formControlName='phonenumber'>
+        <div class="validation" *ngIf="!this.sendLogin">Цей номер телефону вже зареєстрований</div>
+    </div>
+
+    <div class="form-control">
+        <label>Пароль</label>
+        <input type="password" formControlName='password'>
+        <div class="validation"></div>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="form.invalid"><p>Відправити</p></button>
+    <div class="switch-form-container">
+        <label class="form-changer">Уже маєте аккаунт?</label>
+        <label class="form-changer-colored" (click)="showLogin()">Тут ви зможете увійти!</label>
+    </div>
+</form>
+
+
+<ng-template #showLog>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="loginsubmit() ">
+        <div class="form-control">
+            <label>e-mail</label>
+            <input type="text" formControlName='email'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Пароль</label>
+            <input type="password" formControlName='password'>
+            <div class="validation"></div>
+        </div>
+
+        <button class="btn" type="submit" [disabled]="loginForm.invalid" ><p>Відправити</p></button>
+        <div class="switch-form-container">
+            <label class="form-changer">Ще не маєте зареєстрованого аккаунту?</label>
+            <label class="form-changer-colored" (click)="showRegister()">Реєструйтесь тут!</label>
+        </div>
+    </form>
+</ng-template>

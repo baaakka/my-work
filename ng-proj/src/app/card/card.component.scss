@@ -1,0 +1,17 @@
+.about-us-container{
+    background-color: white;
+    max-width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    p{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 30px;
+    }
+    img{
+        max-width: 500px;
+    }
+}

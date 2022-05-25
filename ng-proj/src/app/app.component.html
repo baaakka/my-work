@@ -1,0 +1,54 @@
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header_inner">
+                <div class="logo">
+                    <a routerLink="/"><img class="logotype" src = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Logo_of_the_National_Council_of_Ukraine_on_Television_and_Radio_Broadcasting.svg"></a>
+                </div>
+                <nav class="nav">
+                    <a class="content" *ngIf="this.token" routerLink="/create">Стврити заявку</a>
+                    <a class="content" routerLink="/map">Знайти житло</a>
+                    <a class="content" href="#">Про нас</a>
+                    <button (click)="form = true" *ngIf="!this.token;else profile"><a >Увійти</a></button>
+                    <ng-template #profile>
+                        <div class="user-info">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+                            <p >{{this.name}} {{this.surname}}</p>
+                        </div>
+                        <fa-icon [icon]="arrow" class="icon" (click)="logout()"></fa-icon>
+                    </ng-template>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    
+    
+
+    <router-outlet></router-outlet>
+
+
+    <app-form 
+    *ngIf="form"
+    (close)="form = false"></app-form>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_inner">
+                <div class="slogon">
+                   <p class="slogon_text">Знаходь безпечне житло та допомагай іншим!</p>
+                </div>
+                <ul class="nav">
+                    <li *ngIf="this.token" class="content" ><a routerLink="/create">Стврити заявку</a></li>
+                    <li class="content" ><a routerLink="/map">Знайти житло</a></li>
+                    <li class="content" ><a href="#">Про нас</a></li>
+                </ul>
+                <div class="help">
+                    <p class="help_name">Для екстренної допомоги звертайся за номером</p>
+                    <p class="help_number">0502932523</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>

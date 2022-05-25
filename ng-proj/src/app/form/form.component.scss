@@ -1,0 +1,95 @@
+.backdrop{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: 10000000;
+    background: white;
+    border: 1px solid white;
+    margin: 20px 0px;
+    padding: 5px 40px;
+    max-width: 1000px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.validation{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    color: red;
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0px;
+    min-width: 250px;
+    label{
+        font-size:18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+    input{
+        height: 25px;
+        padding: 3px;
+        transition: border 0.5s;
+        box-sizing: border-box;
+        &:hover{
+            border: 2px solid black;
+        }
+    }
+    textarea{
+        resize: none;
+    }
+}
+button{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #e8915a;
+    background: #e8915a;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    &:disabled{
+        background: gray;
+        border: 1px solid gray;
+    }
+    p{
+        color: white;
+        margin: 0 auto;
+    }
+    &:valid{
+        &:hover{
+            box-shadow: 0 0 0 2px #633b22;
+        }
+    }
+}
+
+.switch-form-container{
+    display: flex;
+}
+
+.form-changer{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -10px;
+}
+
+.form-changer-colored{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -10px;
+    color: blue;
+}

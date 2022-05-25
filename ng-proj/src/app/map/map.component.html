@@ -1,0 +1,76 @@
+<div class="map_div" #target>
+  <agm-map [zoom]="zoom" [latitude]="lat" [longitude]="lng" name="map" >
+    <ng-container *ngIf="res">
+      <agm-marker class="marker" *ngFor="let i of publications" [latitude]="i.lat" [longitude]="i.lng" (mouseOver)="showInfo=true" (markerClick)="klicked()" >
+        
+      </agm-marker>
+    </ng-container>
+  </agm-map>
+</div>
+
+<div class="bot-side-container">
+  <div class="left-container">
+    <div class="search-title">
+      <fa-icon [icon]="searchglass" class="icon"></fa-icon>
+      <h2>Пошук</h2>
+    </div>
+    <div class="non-total-search">
+      <label class="search_name" >Введіть адресу населеного пункту</label>
+      <input type="text" id="inpt" class="search_input" [(ngModel)]="search">
+    </div>
+    <div class="total-search-container">
+      <div class="total-search-input-container">
+        <label class="total_search_name" >Введіть відстань</label>
+        <input type="text" class="search_input" [(ngModel)]="kilometers">
+      </div>
+      <p class="text-between">км від:</p>
+      <div class="total-search-input-container">
+        <label class="total_search_name" >Назва населеного пункту</label>
+        <input type="text" class="search_input" [(ngModel)]="fromCity">
+      </div>
+      <div class="tool-container">
+        <fa-icon [icon]="question" class="icon" (mouseover)="showTool=true" (mouseout)="showTool=false"></fa-icon>
+        <span *ngIf="showTool" class="tooltiptext">Це покращений пошук,який надає змогу біженцям знаходити житло на відстані від обласних центрів які є потенційними цілями авіа-ударів.</span>
+      </div>
+    </div>
+    <div class="non-total-search-amount">
+      <label class="search_name" >Введіть кіькість вільних місць</label>
+      <input type="text" id="inpt" class="search_input" [(ngModel)]="amount_search">
+    </div>
+    <button class="search_button" (click)="clicked()">
+      <p>Знайти</p>
+    </button>
+  </div>
+  <div class="main_container" *ngIf="publications.length!=0;else noPosts">
+    <div class="post_container" *ngFor="let i of publications">
+      <h2>{{i.city}}</h2>
+      <div class="header-container">
+        <p class="address">вул. {{i.address}}</p>
+        <button class="delete-button" *ngIf="this.user.phone==i.phone " (click)="deletepubl(i.id)">Видалити</button>
+      </div>
+      <div class="timerange">На {{i.timeRange}}</div>
+      <p class="amount">Місць: {{i.amount}}</p>
+      <div class="comment">
+        {{i.comment}}
+      </div>
+      <div class="post_footer">
+        <p class="phone">{{i.phone}}</p>
+        <button class="seeonmap-btn"><a  (click)="scroll(target,i.lat,i.lng)">Дивитись на карті</a></button>
+        <p *ngIf="i.price!=='0';else free " class="price">Ціна: {{i.price}}  грн/міс</p>
+        <ng-template #free>
+          <p class="price">Безкоштовно</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noPosts >
+    <div class="no_posts_container">
+      <div class="sad_container">
+        <h2>
+          У цьому регіоні немає оголошень );
+        </h2>
+      </div>
+    </div>
+  </ng-template>
+</div>

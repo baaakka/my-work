@@ -1,0 +1,49 @@
+<div class="container">
+    <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+        <h1>Заповніть інформацію щодо публікації</h1>
+
+        <div class="form-control">
+            <label>Скільки осіб ви готові прихистити?</label>
+            <input type="text" formControlName='amount'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Введіть ваш номер телефону</label>
+            <input type="text" formControlName='phone'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Введіть ваше місто</label>
+            <input type="text" formControlName='city'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Введіть адресу помешканя</label>
+            <input type="text" formControlName='address'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>На який термін ви можете надати прихисток?</label>
+            <input type="text" formControlName='timerange'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Введіть ціну (грн/міс)</label>
+            <input type="text" formControlName='price'>
+            <div class="validation"></div>
+        </div>
+
+        <div class="form-control">
+            <label>Ваш коментар</label>
+            <textarea rows="5" cols="33" formControlName='comment'></textarea>
+            <div class="validation"></div>
+        </div>
+
+        <button class="btn" type="submit" [disabled]="form.invalid"><p>Відправити</p></button>
+    </form>
+</div>
